@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive AI Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #000000;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 13px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 38px;
+            height: 38px;
+            background-image: url('https://s3-alpha-sig.figma.com/img/715e/d604/d5b3586a8dadef2253faa05390e29898?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=W6OUWi9kyZBPJ7-ubpstt5y5~l~RjPya7YNQ8W7sGOedAyiWq09GbJI8dmAXRmZx3uUaus8wdwVcmIKlVh~SdWLgpt8E9VQAN03ZAIgw~tnfr4UltQtT4SPiluBc5OTcGLOV8auDpkePNlTU-xErVWsURRCIiUgsAFQz1CVvZTqn30deLIytkjVJBqgFHS769LgVrNmxtKfgMR~ZaEiThLuSbsqY9VCLe97EWwZVnk6o5hNJTyDk9oaY9e6GmvDOmPDR4~xJwwrm1M-iYBxYxKN7KMmE1cJDm~2w-GksfcOwtBe~Y66pi3MZyonJG65FNfw8W6-G4pJXJ8sjZoOPVw__');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 8px;
+        }
+        
+        .nav-container {
+            display: flex;
+            gap: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 8px 40px;
+        }
+        
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-container a:hover {
+            opacity: 0.8;
+        }
+        
+        .waitlist-button {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(140, 69, 255, 0.4);
+            box-shadow: inset 0px 0px 6px 3px rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(14px);
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+        
+        .waitlist-button:hover {
+            background: rgba(140, 69, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        
+        .waitlist-button2 {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 1);
+            color: rgb(0 0 0);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .waitlist-button2:hover {
+            transform: translateY(-1px);
+            background: white;
+        }
+        
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .bg-purple-large {
+            width: 569px;
+            height: 569px;
+            background: #622A9A;
+            filter: blur(224px);
+            opacity: 0.3;
+        }
+        
+        .bg-purple-medium {
+            width: 300px;
+            height: 300px;
+            background: #8A3FFC;
+            filter: blur(80px);
+            opacity: 0.2;
+        }
+        
+        .bg-purple-small {
+            width: 200px;
+            height: 200px;
+            background: #BB86FC;
+            filter: blur(80px);
+            opacity: 0.2;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 82px;
+            font-weight: 500;
+            line-height: 84px;
+            letter-spacing: -5.06%;
+            text-align: center;
+            margin-bottom: 16px;
+            position: relative;
+            display: grid;
+        }
+        
+        .hero span {
+            background: linear-gradient(180deg, #FFFFFF 54.17%, #B372CF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            opacity: 0.8;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 90px auto 0;
+            gap: 7px;
+            border-radius: 50px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: fit-content;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .hero-image-container .new {
+            background: #9855FF;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 18px;
+            border-radius: 40px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .hero-image-container p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            letter-spacing: -0.01%;
+            color: #9855FF;
+            margin: 0;
+        }
+        
+        .next-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .next-section img {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .trusted-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .trusted-title {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            letter-spacing: -0.01%;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .trusted-title::before,
+        .trusted-title::after {
+            content: "";
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            vertical-align: middle;
+            margin: 0 20px;
+        }
+        
+        .trusted-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .logo-box {
+            width: 235px;
+            height: 98px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 32px 40px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%) brightness(1.5);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-box:hover img {
+            filter: grayscale(0) brightness(1);
+            opacity: 1;
+        }
+        
+        .graphy {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 76px;
+        }
+        
+        .graphy p {
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 38px;
+            letter-spacing: -0.04%;
+            color: white;
+            margin: 0 auto 60px;
+            max-width: 800px;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            width: 346px;
+            height: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+        
+        .feature-card img {
+            width: 265px;
+            height: 206px;
+            object-fit: contain;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card span {
+            font-size: 20px;
+            font-weight: 500;
+            color: white;
+            margin-top: auto;
+            text-align: start;
+        }
+        
+        .feature-card p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: -0.01%;
+            vertical-align: middle;
+            text-align: start;
+        }
+        
+        .maintext {
+            margin-top: 76px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            background: linear-gradient(107.08deg, #190D2E 0.54%, #020103 99.46%);
+        }
+        
+        .maintext h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 56px;
+            line-height: 65px;
+            letter-spacing: -1.5%;
+            width: 354px;
+            height: 130px;
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .maintext h2 {
+            font-family: 'Inter', sans-serif;
+            margin: 0 0 30px 0;
+        }
+        
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .feature h3 {
+            font-family: 'Inter', sans-serif;
+            margin: 0 0 10px 0;
+        }
+        
+        .feature p {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .client-testimonial {
+            padding: 80px 20px;
+            color: white;
+        }
+        
+        .testimonial-heading {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 56px;
+            line-height: 65px;
+            letter-spacing: -1.5%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-subheading {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 31px;
+            letter-spacing: -0.01%;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .testimonial-grid {
+            max-width: 990px;
+            margin: 0 auto;
+            display: flex;
+            border-radius: 12px;
+            border-image: linear-gradient(90deg, #141315 0%, #FFFFFF 16.5%, #EAEAEA 86.5%, #020103 100%) 1;
+            overflow: hidden;
+            height: 401px;
+        }
+        
+        .image-grid {
+            width: 312px;
+            height: 234px;
+            margin: 80px 0 80px 60px;
+            position: relative;
+        }
+        
+        .grid-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .horizontal-line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .horizontal-line:nth-child(1) {
+            top: -0.67%;
+            width: 1000px;
+            left: -20%;
+        }
+        
+        .horizontal-line:nth-child(2) {
+            top: 100%;
+            width: 1000px;
+            left: -20%;
+        }
+        
+        .vertical-line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .vertical-line:nth-child(3) {
+            left: 37px;
+            top: -30%;
+            height: 500px;
+        }
+        
+        .vertical-line:nth-child(4) {
+            right: 37px;
+            top: -30%;
+            height: 500px;
+        }
+        
+        .client-image {
+            width: 100%;
+            height: 100%;
+            object-fit: scale-down;
+            display: block;
+        }
+        
+        .testimonial-text {
+            flex: 1;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .quote {
+            font-size: 24px;
+            line-height: 1.5;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        .client-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .client-title {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 1024px) {
+            header {
+                margin-top: 8px;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 72px;
+            }
+            .trusted-title::before,
+            .trusted-title::after {
+                width: 40px;
+                margin: 0 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+                line-height: 52px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .trusted-logos {
+                gap: 10px;
+            }
+            .logo-box {
+                width: calc(50% - 5px);
+                height: 80px;
+                padding: 20px;
+            }
+            .trusted-title::before,
+            .trusted-title::after {
+                width: 20px;
+                margin: 0 10px;
+            }
+            .feature-card {
+                width: 100%;
+                max-width: 346px;
+                height: auto;
+                padding: 30px 20px;
+            }
+            .feature-card img {
+                width: 200px;
+                height: auto;
+            }
+            .feature-card p {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 36px;
+                line-height: 40px;
+            }
+            .trusted-title::before,
+            .trusted-title::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo" aria-label="Company Logo"></div>
+        <nav class="nav-container">
+            <a href="#">Features</a>
+            <a href="#">Developers</a>
+            <a href="#">Company</a>
+            <a href="#">Blog</a>
+            <a href="#">Changelog</a>
+        </nav>
+        <button class="waitlist-button">Join Waitlist</button>
+    </header>
+
+    <div class="hero-image-container">
+        <span class="new">new</span>
+        <p>Latest integration just arrived</p>
+    </div>
+
+    <section class="hero">
+
+        <div class="bg-circle bg-purple-large" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+        <div class="bg-circle bg-purple-medium" style="top: 30%; left: 30%;"></div>
+        <div class="bg-circle bg-purple-small" style="bottom: 20%; right: 20%;"></div>
+
+        <h1>Boost your <span>rankings with AI.</span></h1>
+        <p>Elevate your site’s visibility effortlessly with AI, where smart technology meets user-friendly SEO tools.</p>
+        <button class="waitlist-button2">Join Waitlist</button>
+    </section>
+
+    <section class="next-section">
+
+        <div class="bg-circle bg-purple-large" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+        <div class="bg-circle bg-purple-medium" style="top: 30%; right: 20%;"></div>
+        <div class="bg-circle bg-purple-small" style="bottom: 10%; left: 25%;"></div>
+
+        <img src="https://s3-alpha-sig.figma.com/img/e5ce/890b/ca00124a5371399de473bf05de51d0d1?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=K2xE37aVJlT7vbybFMAqfsLrZcRQ8vcP~-Wpxy1yTmUETmIv4gtp00zD7waI7-Hpx7XKa4QF0z6fx2VFPTrgxMW9ETKygRpDXsKw8JhpvlW~4ipEkeKccWefY6GZ~1ow7xtQXphi5ijw4rwrrQOmp-~41Jyjl~fOGZ9ZUb-07BKO7YRXM4CQEkK5VRiGEYX~zbqMooYUXJHLRA~VQRGqoed386MEct2NzRCb3vkB9mlwAfBgp8OTrVD8MaYaamvYMefvNtm1jbbvkwpZG6k2Wvz7oUIZ3NIg1WMcKNa5zTT~-a6DcRHr3UUvEWs6C7BaX~srjEVV1pW9BlJV4o~2rA__"
+            alt="Product Screenshot" loading="lazy">
+        <div class="bg-circle bg-purple-large" style="top: 20%; left: 20%; transform: translate(-50%, -50%);opacity: 0.5;"></div>
+        <div class="bg-circle bg-purple-large" style="top: 20%; left: 80%; transform: translate(-50%, -50%);opacity: 0.5;"></div>
+    </section>
+
+    <section class="trusted-section">
+        <p class="trusted-title">Trusted by the world's most innovative teams</p>
+        <div class="trusted-logos">
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/9410/13f1/5bd70e5728d3a7c822c99db88103f761?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=UoNthVuU3tD9J7A4qGuSkTQeeh7i5noNLZsC1Y6QetHD21kYApk4JlpEHe6bqsoCzF0B9jUWHmNJpdT53TkyhjDIGzy8yiQWOBa8R25TdlEeCjyWpb-Ve8z9xvU9DqDjeIe7RC3Ah32s-At63ISfKGMLltcYfVa-mfIpVDdQHglkX2gH~-4QietW16YjajoNwTeSy4sqirNc4H5HO-VOsbq-p94u~7-H~PT8SFTY3DVOvOD8gPy6Cuj0eQmtHyHZmAdYJUJqzNzKdPvGTnq5UvgUTCpqIMTI7c-7tikiWoNzXH3gf5ZLsGHJ0poBNBjf6~wjSqfymJvgbfp1kDFq-w__"
+                    alt="Company 1 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/bb3b/23a4/5e00043771c516d33d948c587bfbd166?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=dczjp7IubGrMHxVsFkHqxkMaFrklUym5jsxzz~AmCBQGpnQlwGAUS1Nwqh6JUqVZ-o7944ahIgXjZO9kOHqsqsAJo7Z8HDobhhbW5r3GEpVPVFTUfhYDVSf26OkZRsI3ApKIyrGcxKb2jCfdLtkQSYX6QapmoKG5NHpQ4ubbl5upDCyK5mQ1stgkHeuCNuY-nOpqbkotuaKFp4GiNRjASW9~D5f1lITiW03BbxACU9CVaWPn35sC0k532h6qwuckL3rMBtV1z5PIASjERSFiIllBi7gmeJwHfi3xa3ahTdkBJ~y8F~vGm9GQJRQ-6v0~SbS999BZ5ASwC6pFfoKtFg__"
+                    alt="Company 2 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/5690/b2d0/66847ffd317ca6c0aa7db639e8ae55f6?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=oAHtFZFa9w9WKatqxEIpg12c3R8B3WZ10SAOJ1GmMb-6bl7mpDWoBsg4H0czBqMmdy5NiuaojjTM7-xhaBWrJhkSvn68a77TbnkaCarynwt0oYaepssbJp0z5twwt72NXv-i0oMvm3x-sQ-mIZJY3FYQYRqzgPxinUS2qDRgDR7cm0AAQT16hZ-~KplMNogIHGLB56IlyRypdY-HsdL-gQb49JuXfCahgtiXC1WxQ4PWF1kLir3pLEqN~sBECBlGMzTRd8nezCuYwgqOEwRLJhbhmxT0bAJu~V6D6wO~9OWjatwNj3~oOmXBjOX8LOi-Sat-EILowsJXdc8lG9D2fw__"
+                    alt="Company 3 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/2388/911d/c5c60ec1bfd6a5a12c6418677af625f1?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ksXrD~ILV4HDgPwHEWTE0Gyty11jIR6aSn8yYR-6SecNujKTrAgzoxenTqVrniDXlXkszq0dZ6INXJsuv7ZrUwHkAJaWofEikjlFi0zsugbIfVvc0ULmyUCgSoZWkGlsvA6Bbkpk26FdwW6zhfViozyJb53QRyiX~qfQ1CTe8G1AGmQmOilf3TbyhPKQVcDzBi7aFhCjxB4M6LPGcuL2mgjdhuKkAyJRUEjGZ5R1J5TkHPpse2wF9VYiuj4c~pglYQ8xUJ0WZXE1vlwU4E5UYhKZX6KJYo5rf94rfBLpFlF4sfzvhnNgtXrEXG5hTy5Sg~13dV2Sbn5E2UnJXiafOg__"
+                    alt="Company 4 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/5e03/12fb/091f502a345b0cca8b0307e4d1891d76?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=fHyfZPfvIHya49xjMteJJM6g1xZOHENiQKW~OCq7sZc1J4SnJVKPt74U2a9Y-cv-caqY5W9B1hlYgaE8fPy28L5tnlvnzmcZdV9~KtdhZQyfTukr-llKwaJMakgyf2cd~Byto-XwaRgEplXF-xI~eo1zoPNMIvDbl0coD9punptMguTB4BUU3ZyiyhJPDgoyEgfZPsLhU3KKQAsLkrzJsMX2FqNOhuxiPbt3rioJU-HbAm7eAHtGlOVvxDxThsa60FByqfPU4Yn7A7f4m2xKqMp-VmOca55iqQxFPXe8X0G32QiDzmCPS2RWWcZSz0Yr0Wc2pxD1~j1Iw8E5M6x1gQ__"
+                    alt="Company 5 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/7c77/87ac/21932c0368f447fd099935a7608f8f49?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ckPsBikEzyyeBwBYigjkeR8gkuRB-iDTmo-g5JmR2JQ2IO1ZS~K3NKgAOCQ6JRymj~TfAXTCoMjogR22IAYQZtYG8-j6HCsehKUx0GjMgKP13ceu6N1sVCnJZ2KhfvYtrmZu0VbSSb4BMT3HErW542-Jgp3PouECyWVX15d3bVrmgsvEMohTdIzSKbikgQhzIbUVPFRAonvj2zteiOXuo8p4SUlW~mGohK3zxe7vLSC3hYyIHYUyQshe3J7eRL1GNjH94T9CTDir3GaCyx5bIzR-YbbzpaEL~Cz1VTnGz2dNxPpD9MqlirVq9Bucm4L20Gb32F-Orld5zkymf67Xfg__"
+                    alt="Company 6 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/4f61/c09c/d2f3d7147e895046ed70a7e6d0b60f96?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=hD-Mrydkok1rlk8EaM8N9bb-H37SIe1TiL0WQLSoDtwGhgq8Gf9sZ26GhkD4ODcmQy2tv6WX16RKEUAWj3Ww8SdfSiNUVjJOtxDPeYzqQoNtgKU82soXFDZ6BGo5T1n47I4xz-yGqOWc-XkkUZsDXBg2ERLwCsT0VVVPyP~pV8wfC1HkEMiClclx04Nix1kLh2B8gWl1beo0rAMhbEcjYmtbKVhI0mmAEVjdrgdR~JOac~Wk4rkE2wU3Fv-jU13b-s53ZEJv3qPGd8NdB~w9s83ooeNBlO5paCN2ZL8u1xx8oPZSOJy9dGO9~INAZWCye0-QWdj2ikKl0oVdRbPuGQ__"
+                    alt="Company 7 Logo" loading="lazy">
+            </div>
+            <div class="logo-box">
+                <img src="https://s3-alpha-sig.figma.com/img/fad3/88fb/2dd1d6f1bb6c2b961fd5ff21fbffb0dc?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NuaeAgzEQk524ygZGsnP9jeCJUIFlEx1Fll5J0vwb9tkSnNgud3YmzoGfSbhpXy9fW9V-Z8SlwbrWUuGE70AyCpLDr2yZbjWrkK0PCPO443eDuO1Tw3-cCANe2YEnxhWuAAkIlrXbMhyBvfirgI-1CKudkeaWIXTPZJVMt6JixxmUH-rWsqVRRpbiRRt-lBiN339VsGuIe7U6vtNgHCv8tpG-WFuBj3QWjgnJPrAn9G0UYcEAcV0zuex0IWWisxoamejp-svlAEJYnm5X~pdQJzWYFJyr8Y5BE0UkTeE1a3nc4jRMsmKMefrqnUM167QsIbnk5bKnncMOxEcm8-NUg__"
+                    alt="Company 8 Logo" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="graphy">
+        <p>Harness the power of AI, making search engine optimization intuitive and effective for all skill levels.</p>
+        <div class="features-container">
+            <div class="feature-card">
+                <img src="https://s3-alpha-sig.figma.com/img/24a9/f01d/3971cc35568397685ee5c97315aec88f?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Wxr7dl8X3WxhIuGx1CzOWNgVlG3IK2M~XQvjNHnixz0zdIoHwSIbfN6~82NfMA6~wAuy9K~lVd1cwz~8WP9mMVytIFZJo7g37q6yu3uesbTtB9~ph4Lwq2ME15yG692vjiVhxPor5WUziHRr4OTIFXKkiXPjmrsuNog9eGsK-vrkwadckfIAavpaARro1lQ2yw3jn9PSrwTaiSKt9VzaMroiFZ2mBfM5mfwcW170OEYm~a99-d8raGJTl5c25RJx0e-iugAsmk4bDCsVpfy9vVVJwaXZnHK3AKj~fFH0-qUSyBijv3lz-q9Q5OBz2sYtO-guM~nsF0-G7GX4NV8f0A__"
+                    alt="SEO goal setting illustration">
+                <span>SEO Goal Setting</span>
+                <p>Helps you set and achieve SEO goals with guided assistance.</p>
+            </div>
+            <div class="feature-card2"><img src="./images/User Friendly.png" alt="SEO feature illustration "></div>
+            <div class="feature-card2"><img src="./images/Visual.png" alt="SEO feature illustration "></div>
+            <div class="feature-card">
+                <img src="https://s3-alpha-sig.figma.com/img/295d/6d3d/5c83aa5d4622b0189a7d97a1343e5d11?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=mxVX8zKR7Y~hccQHSYSoMtGkLET8BhVEBAEZmmFDV5hp4Plunyw9z9Pgp~1uE9iMMyHeKzFzCPz-i9nm-P6ybF8AV~RmLqGz9vK4i1i0SegkOLpzoby5geLrprkUwkWxY~2PzaJHakntGC3IRQTEmpRd8g6Ododpj9Ja35EFQp8bByKIt14MJzhk9tev8sKjI4NDOvhYXRxBXiM19Wz2CoQhXjVOKHhOz76fBjtHwn~GGkWHnIB6~d8Wfnol9GBnpaDfYEbRwQr5F3I6vpwjeOQRV6ySGw3KMlvHdR60xrAnvzeYtLZtk4tGCfKvsda0hu76PeSWcBkHTBpUgYqRBg__"
+                    alt="SEO goal setting illustration">
+                <span>Smart Keyword Generator</span>
+                <p>Automatic suggestions and the best keywords to target.</p>
+            </div>
+        </div>
+    </section>
+    <section class="maintext">
+        <h1>Elevate your SEO efforts.</h1>
+        <div class="features-container">
+
+            <div class="feature">
+                <h3>User-friendly dashboard</h3>
+                <p>Perform complex SEO audits and optimizations with a single click.</p>
+            </div>
+            <div class="feature">
+                <h3>Content evaluation</h3>
+                <p>Simple corrections for immediate improvements.</p>
+            </div>
+            <div class="feature">
+                <h3>Link Optimization Wizard</h3>
+                <p>Guides you through the process of creating and managing links.</p>
+            </div>
+        </div>
+
+        <div class="features-container">
+
+            <div class="feature">
+                <h3>Visual reports</h3>
+                <p>Visual insights into your site's performance.</p>
+            </div>
+            <div class="feature">
+                <h3>SEO goal setting</h3>
+                <p>Helps you set and achieve SEO goals with guided assistance.</p>
+            </div>
+            <div class="feature">
+                <h3>One-click optimization</h3>
+                <p>Perform complex SEO audits and optimizations with a single click.</p>
+            </div>
+        </div>
+
+        <div class="features-container">
+
+            <div class="feature">
+                <h3>Smart Keyword Generator</h3>
+                <p>Automatic suggestions and the best keywords to target.</p>
+            </div>
+            <div class="feature">
+                <h3>Automated alerts</h3>
+                <p>Automatic notifications about your SEO health, including quick fixes.</p>
+            </div>
+            <div class="feature">
+                <h3>Competitor reports</h3>
+                <p>Provides insights into competitors' keyword strategies and ranking.</p>
+            </div>
+        </div>
+    </section>
+    <section class="client-testimonial">
+        <div class="container">
+            <h2 class="testimonial-heading">Our clients</h2>
+            <p class="testimonial-subheading">Hear firsthand how our solutions have boosted online success for users like you.</p>
+
+            <div class="testimonial-grid">
+                <div class="image-grid">
+                    <div class="bg-circle bg-purple-medium" style="top: 0%; right: 0%;"></div>
+                    <div class="grid-lines">
+                        <div class="horizontal-line"></div>
+                        <div class="horizontal-line"></div>
+                        <div class="vertical-line"></div>
+                        <div class="vertical-line"></div>
+                    </div>
+                    <img src="https://s3-alpha-sig.figma.com/img/8c8e/2f27/3918e4312c37556124cb921ca962ebf6?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=GpnyyImsx13-Nt3F6cPyd0iQkzdI-DbTabQEkmO6frGBN~0PWlwmgyf6QAvKYJElB7S7xzNVtuLPl6Nb76wn~fzXghXTV72yrKmTCK3KHwp0ZrtcUUrgi15uewlPUS0DJdIwlgYNXZQOEUAzeO4gm6fHsQuCsuhs~JBI1~7UwmkFK~UvyfBSgsBWx343-iwFlvjJbxgxkA3qZLP05Api2qM~C0iuRSGe8pqKmenNZBpi4pIgkjNibC9ZJz~k5YkYAlsIcCiDvBzORe7R8hcBKLpAINSadbgsTRUe6-AA0piixn1syMEq00QXMc4c5W0wjRh~rjOUkLy0ZJBEwKGwIQ__"
+                        alt="Talia Taylor" class="client-image">
+
+
+                </div>
+                <div class="testimonial-text">
+                    <p class="quote">"This product has completely transformed how I manage my projects and deadlines"</p>
+                    <p class="client-name">Talia Taylor</p>
+                    <p class="client-title">Digital Marketing Director @ Quantum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
